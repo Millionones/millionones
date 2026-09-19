@@ -7,7 +7,7 @@ import { del, get, post, put } from "@/helpers/api";
 import { BASE_URL } from "@/config";
 import toast from "react-hot-toast";
 import { ReactSelect } from "@/components/ui/select";
-import { Trash2, Pencil } from "lucide-react";
+import { Trash2, Pencil, TrashIcon } from "lucide-react";
 import Swal from "sweetalert2";
 
 
@@ -63,38 +63,38 @@ export default function FixedSeoForm() {
 
 
   const formik = useFormik({
-  initialValues: {
-    id: "", // ✅ Add id here (optional, helps clarity)
-    name: "",
-    slug: "",
-    sec1: { title: "", content: "" },
-    sec2: [{ img: "", title: "", content: "" }],
-    sec3: { title: "", content: "" },
-    sec4: { title: "", contents: [{ title: "", content: "" }] },
-    sec5: { title: "", content: [{ title: "", content: "" }] },
-    sec6: { title: "", content: "" },
-    faq: [{ question: "", answer: "" }],
-  },
+    initialValues: {
+      id: "", // ✅ Add id here (optional, helps clarity)
+      name: "",
+      slug: "",
+      sec1: { title: "", content: "" },
+      sec2: [{ img: "", title: "", content: "" }],
+      sec3: { title: "", content: "" },
+      sec4: { title: "", contents: [{ title: "", content: "" }] },
+      sec5: { title: "", content: [{ title: "", content: "" }] },
+      sec6: { title: "", content: "" },
+      faq: [{ question: "", answer: "" }],
+    },
 
-  onSubmit: (values) => {
-    console.log("Form submitted:", values);
+    onSubmit: (values) => {
+      console.log("Form submitted:", values);
 
-    const { id } = values;
-    const action = id ? put : post;
-    const url = id ? `/service` : "/service"; // ✅ Fix URL to include id when editing
+      const { id } = values;
+      const action = id ? put : post;
+      const url = id ? `/service` : "/service"; // ✅ Fix URL to include id when editing
 
-    action(url, values)
-      .then((res) => {
-        toast.success(res.message);
-        formik.resetForm();
-        setSelectedType(null); // ✅ Reset category dropdown after submit
-        getAllservice();
-      })
-      .catch((err) => {
-        toast.error(err.response?.data?.message || "Something went wrong");
-      });
-  },
-});
+      action(url, values)
+        .then((res) => {
+          toast.success(res.message);
+          formik.resetForm();
+          setSelectedType(null); // ✅ Reset category dropdown after submit
+          getAllservice();
+        })
+        .catch((err) => {
+          toast.error(err.response?.data?.message || "Something went wrong");
+        });
+    },
+  });
 
   const handleArrayChange = (path, index, field, value) => {
     const updated = [...getIn(formik.values, path)];
@@ -125,7 +125,7 @@ export default function FixedSeoForm() {
 
     try {
       const res = await post("common/image/service", formData)
-      const imageUrl = res?.data?.new_filename;
+      const imageUrl = res?.data?.url;
       const clone = [...formik.values[sec]];
       clone[index]["img"] = imageUrl
       formik.setFieldValue("sec2", clone);
@@ -168,74 +168,74 @@ export default function FixedSeoForm() {
     });
   };
 
-const handleEdit = (item) => {
-  console.log("Editing item:", item);
+  const handleEdit = (item) => {
+    console.log("Editing item:", item);
 
-  formik.setValues({
-    id: item._id,
-    name: item.name || "",
-    slug: item.slug || "",
-    category: item.category || "",
-    sec1: {
-      title: item.sec1?.title || "",
-      content: item.sec1?.content || "",
-    },
-    sec2:
-      item.sec2?.length > 0
-        ? item.sec2.map((card) => ({
+    formik.setValues({
+      id: item._id,
+      name: item.name || "",
+      slug: item.slug || "",
+      category: item.category || "",
+      sec1: {
+        title: item.sec1?.title || "",
+        content: item.sec1?.content || "",
+      },
+      sec2:
+        item.sec2?.length > 0
+          ? item.sec2.map((card) => ({
             img: card.img || card.image || "",
             title: card.title || "",
             content: card.content || "",
           }))
-        : item.section2?.length > 0
-        ? item.section2.map((card) => ({
-            img: card.img || card.image || "",
-            title: card.title || "",
-            content: card.content || "",
-          }))
-        : [{ img: "", title: "", content: "" }],
-    sec3: {
-      title: item.sec3?.title || "",
-      content: item.sec3?.content || "",
-    },
-    sec4: {
-      title: item.sec4?.title || "",
-      contents:
-        item.sec4?.contents?.length > 0
-          ? item.sec4.contents.map((c) => ({
+          : item.section2?.length > 0
+            ? item.section2.map((card) => ({
+              img: card.img || card.image || "",
+              title: card.title || "",
+              content: card.content || "",
+            }))
+            : [{ img: "", title: "", content: "" }],
+      sec3: {
+        title: item.sec3?.title || "",
+        content: item.sec3?.content || "",
+      },
+      sec4: {
+        title: item.sec4?.title || "",
+        contents:
+          item.sec4?.contents?.length > 0
+            ? item.sec4.contents.map((c) => ({
               title: c.title || "",
               content: c.content || "",
             }))
-          : [{ title: "", content: "" }],
-    },
-    sec5: {
-      title: item.sec5?.title || "",
-      content:
-        item.sec5?.content?.length > 0
-          ? item.sec5.content.map((c) => ({
+            : [{ title: "", content: "" }],
+      },
+      sec5: {
+        title: item.sec5?.title || "",
+        content:
+          item.sec5?.content?.length > 0
+            ? item.sec5.content.map((c) => ({
               title: c.title || "",
               content: c.content || "",
             }))
-          : [{ title: "", content: "" }],
-    },
-    sec6: {
-      title: item.sec6?.title || "",
-      content: item.sec6?.content || "",
-    },
-    faq:
-      item.faq?.length > 0
-        ? item.faq.map((f) => ({
+            : [{ title: "", content: "" }],
+      },
+      sec6: {
+        title: item.sec6?.title || "",
+        content: item.sec6?.content || "",
+      },
+      faq:
+        item.faq?.length > 0
+          ? item.faq.map((f) => ({
             question: f.question || "",
             answer: f.answer || "",
           }))
-        : [{ question: "", answer: "" }],
-  });
+          : [{ question: "", answer: "" }],
+    });
 
-  const selectedCat = category.find((opt) => opt.value === item.category);
-  setSelectedType(selectedCat || null);
+    const selectedCat = category.find((opt) => opt.value === item.category);
+    setSelectedType(selectedCat || null);
 
-  toast.success("Loaded data for editing");
-};
+    toast.success("Loaded data for editing");
+  };
 
 
 
@@ -283,7 +283,7 @@ const handleEdit = (item) => {
                 <>
                   <div>
                     <label className="block mb-1 text-sm font-medium">Preview</label>
-                    <img src={`${BASE_URL}/${item.img}`} alt="Preview" className="w-24 h-24 object-cover rounded-md" />
+                    <img src={`${item.img}`} alt="Preview" className="w-24 h-24 object-cover rounded-md" />
                   </div>
                 </>
               ) : null}

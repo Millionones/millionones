@@ -52,7 +52,7 @@ export default async function Insights(props) {
           {data.map((blog, index) => (
             <BlogCard
               key={index}
-              image={`${BASE_URL}${blog.image}`}
+              image={`${blog.image}`}
               title={blog.name}
               description={blog.desc}
               link={`${routes[blog.type]}/${blog.permalink}`}

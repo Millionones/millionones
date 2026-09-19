@@ -86,9 +86,9 @@ const Blogs = () => {
       "brands",
       Array.from({ length: 3 }, (_, i) => category.brands[i] || null)
     );
-    setImagePreview(BASE_URL + category.image);
+    setImagePreview(category.image);
     setSelectedType(category.type.map((item) => ({ label: item, value: item })));
-    setImagePreviews(category.brands.map((brand) => BASE_URL + "/" + brand));
+    setImagePreviews(category.brands.map((brand) => brand));
     toTop();
   };
 
@@ -127,17 +127,44 @@ const Blogs = () => {
     post("common/image/category_brands", formData)
       .then((res) => {
         const newPreviews = [...imagePreviews];
-        newPreviews[index] = BASE_URL + "/" + res?.data?.new_filename;
+        newPreviews[index] = res?.data?.url;
         setImagePreviews(newPreviews);
 
         const newImages = [...formik.values.brands];
-        newImages[index] = res?.data?.new_filename;
+        newImages[index] = res?.data?.url;
         formik.setFieldValue("brands", newImages);
       })
       .catch((err) => {
         console.log(err);
         toast.error(err?.response?.data?.message || err?.message);
       });
+  };
+
+
+  const handleImageChange = async (e, fieldName, index = null) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const res = await post("common/image/insight", formData);
+
+      // Use image URL from response
+      const imageUrl = res.data?.url; // adjust key based on your API
+
+      if (fieldName === "image") {
+        formik.setFieldValue("image", imageUrl);
+        setImagePreview(imageUrl);
+      } else if (fieldName === "details" && index !== null) {
+        const updatedDetails = [...formik.values.details];
+        updatedDetails[index].image = imageUrl;
+        formik.setFieldValue("details", updatedDetails);
+      }
+    } catch (err) {
+      toast.error("Image upload failed");
+    }
   };
 
   return (
@@ -222,12 +249,15 @@ const Blogs = () => {
                 name="image"
                 type="file"
                 accept="image/*"
-                onChange={(event) => {
-                  const file = event.currentTarget.files?.[0];
-                  formik.setFieldValue("image", file || null);
-                  if (file) {
-                    setImagePreview(URL.createObjectURL(file));
-                  }
+                // onChange={(event) => {
+                //   const file = event.currentTarget.files?.[0];
+                //   formik.setFieldValue("image", file || null);
+                //   if (file) {
+                //     setImagePreview(URL.createObjectURL(file));
+                //   }
+                // }}
+                onChange={(e) => {
+                  handleImageChange(e, "image")
                 }}
               />
             </>
@@ -285,9 +315,8 @@ const Blogs = () => {
         <div className="col-span-full mt-3">
           <button
             type="submit"
-            className={`px-4 py-1 rounded-md text-white transition ${
-              formik.values.id ? "bg-yellow-600 hover:bg-yellow-700" : "bg-blue-600 hover:bg-blue-700"
-            }`}>
+            className={`px-4 py-1 rounded-md text-white transition ${formik.values.id ? "bg-yellow-600 hover:bg-yellow-700" : "bg-blue-600 hover:bg-blue-700"
+              }`}>
             {formik.values.id ? "Update" : "Submit"}
           </button>
 
@@ -313,8 +342,8 @@ const Blogs = () => {
               {rows.map((row) => (
                 <tr key={row._id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-4 py-2">
-                    <Link href={`${BASE_URL}${row?.image || ""}`} target="_blank">
-                      <img src={`${BASE_URL}${row.image}`} alt="insight" className="w-14 h-14 object-cover rounded-md" />
+                    <Link href={`${row?.image || ""}`} target="_blank">
+                      <img src={`${row.image}`} alt="insight" className="w-14 h-14 object-cover rounded-md" />
                     </Link>
                   </td>
                   <td className="px-4 py-2 font-medium">{row.name}</td>

@@ -95,7 +95,7 @@ const Blogs = () => {
     formik.setFieldValue("content", blog.content);
     formik.setFieldValue("type", blog.type);
     formik.setFieldValue("image", blog.image);
-    setImagePreview(BASE_URL + blog.image);
+    setImagePreview(blog.image);
     setSelectedType({ label: blog.type, value: blog.type });
     toTop();
   };
@@ -178,7 +178,33 @@ const Blogs = () => {
       }
     });
   }
-  
+
+  const handleImageChange = async (e, fieldName, index = null) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const res = await post("common/image/insight", formData);
+
+      // Use image URL from response
+      const imageUrl = res.data?.url; // adjust key based on your API
+
+      if (fieldName === "image") {
+        formik.setFieldValue("image", imageUrl);
+        setImagePreview(imageUrl);
+      } else if (fieldName === "details" && index !== null) {
+        const updatedDetails = [...formik.values.details];
+        updatedDetails[index].image = imageUrl;
+        formik.setFieldValue("details", updatedDetails);
+      }
+    } catch (err) {
+      toast.error("Image upload failed");
+    }
+  };
+
   return (
     <div className="p-4">
       <form onSubmit={formik.handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -281,12 +307,15 @@ const Blogs = () => {
                 name="image"
                 type="file"
                 accept="image/*"
-                onChange={(event) => {
-                  const file = event.currentTarget.files?.[0];
-                  formik.setFieldValue("image", file || null);
-                  if (file) {
-                    setImagePreview(URL.createObjectURL(file));
-                  }
+                // onChange={(event) => {
+                //   const file = event.currentTarget.files?.[0];
+                //   formik.setFieldValue("image", file || null);
+                //   if (file) {
+                //     setImagePreview(URL.createObjectURL(file));
+                //   }
+                // }}
+                onChange={(e) => {
+                  handleImageChange(e, "image")
                 }}
               />
             </>
@@ -309,9 +338,8 @@ const Blogs = () => {
         <div className="col-span-full">
           <button
             type="submit"
-            className={`px-4 py-1 rounded-md text-white transition ${
-              formik.values.id ? "bg-yellow-600 hover:bg-yellow-700" : "bg-blue-600 hover:bg-blue-700"
-            }`}>
+            className={`px-4 py-1 rounded-md text-white transition ${formik.values.id ? "bg-yellow-600 hover:bg-yellow-700" : "bg-blue-600 hover:bg-blue-700"
+              }`}>
             {formik.values.id ? "Update" : "Submit"}
           </button>
 
@@ -340,9 +368,9 @@ const Blogs = () => {
               {rows.map((row) => (
                 <tr key={row._id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-4 py-2">
-                    <Link href={`${BASE_URL}${row.image}`} target="_blank">
+                    <Link href={`${row.image}`} target="_blank">
                       {" "}
-                      <img src={`${BASE_URL}${row.image}`} alt="insight" className="w-14 h-14 object-cover rounded-md" />
+                      <img src={`${row.image}`} alt="insight" className="w-14 h-14 object-cover rounded-md" />
                     </Link>
                     {/* <img src={blog.image.replace(/\\/g, "/")} alt="blog" className="w-14 h-14 object-cover rounded-md" /> */}
                   </td>

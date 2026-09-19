@@ -73,10 +73,10 @@ const SeviceSection = () => {
                           <div className="service-head second">
                             <div className="text-number text-16">( 0{index + 1} )</div>
                             <img
-                              src={item?.img?.length > 0 ? `${BASE_URL}${item?.img}` : defaultImg}
+                              src={item?.img?.length > 0 ? `${item?.img}` : defaultImg}
                               loading="lazy"
                               sizes="(max-width: 479px) 93vw, (max-width: 767px) 96vw, (max-width: 991px) 94vw, (max-width: 1919px) 22vw, 320px"
-                              srcSet={item?.img?.length > 0 ? `${BASE_URL}${item?.img}` : defaultImg}
+                              srcSet={item?.img?.length > 0 ? `${item?.img}` : defaultImg}
                               alt=""
                               className="service-img second branding-img"
                               style={{ display: 'block' }}

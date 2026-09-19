@@ -133,7 +133,7 @@ const WorkForm = () => {
       service: item.service,
       category: item.category,
     });
-    setImagePreview(BASE_URL + "/" + item.img);
+    setImagePreview(item.img);
 
   };
 
@@ -178,11 +178,11 @@ const WorkForm = () => {
       const res = await post("common/image/works", formData);
 
       // Use image URL from response
-      const imageUrl = res.data?.new_filename; // adjust key based on your API
+      const imageUrl = res.data?.url; // adjust key based on your API
 
       if (fieldName === "img") {
         formik.setFieldValue("img", imageUrl);
-        setImagePreview(BASE_URL + "/" + imageUrl);
+        setImagePreview(imageUrl);
       } else if (fieldName === "details" && index !== null) {
         const updatedDetails = [...formik.values.details];
         updatedDetails[index].img = imageUrl;
@@ -307,14 +307,14 @@ const WorkForm = () => {
               {detail.img && (
                 <div className="mt-2 flex items-center gap-4">
                   <img
-                    src={`${BASE_URL}/${detail.img}`}
+                    src={detail.img}
                     alt={`Preview ${index}`}
                     className="w-16 h-16 object-cover rounded-md border"
                   />
                   <div className="text-sm text-gray-600">
                     <span className="block">Current image:</span>
                     <a
-                      href={`${BASE_URL}/${detail.img}`}
+                      href={`${detail.img}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:underline"

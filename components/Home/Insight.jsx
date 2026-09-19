@@ -49,22 +49,21 @@ const InsightSection = () => {
 
         <div className="bottom-left-section">
           <Link href={`${routes[data[0]?.type]}/${data[0]?.permalink}`}>
-            <img className="w-full max-h-[305px]" src={`${BASE_URL}${data[0]?.image}`} alt={data[0]?.title} />
+            <img className="w-full max-h-[305px]" src={`${data[0]?.image}`} alt={data[0]?.title} />
             <p className="line-clamp-2">{data[0]?.desc}</p>
           </Link>
         </div>
 
         <div className="middle-section">
           <Link href={`${routes[data[1]?.type]}/${data[1]?.permalink}`}>
-            <img className=" max-h-[611px] w-full" src={`${BASE_URL}${data[1]?.image}`} alt={data[1]?.title} />
+            <img className=" max-h-[611px] w-full" src={`${data[1]?.image}`} alt={data[1]?.title} />
             <p className="line-clamp-2">{data[1]?.desc}</p>
           </Link>
         </div>
 
         <div className="right-section">
           <Link href={`${routes[data[2]?.type]}/${data[2]?.permalink}`}>
-            <img className=" max-h-[611px] w-full" src={`${BASE_URL}${data[2]?.image}`} alt={data[2]?.title} />
-
+            <img className=" max-h-[611px] w-full" src={`${data[2]?.image}`} alt={data[2]?.title} />
             <p className="line-clamp-2">{data[2]?.desc}</p>
           </Link>
         </div>

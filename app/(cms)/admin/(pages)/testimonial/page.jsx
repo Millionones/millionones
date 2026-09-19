@@ -78,7 +78,7 @@ const Testimonial = () => {
     formik.setFieldValue("image", blog.image);
     formik.setFieldValue("testimonial", blog.testimonial);
     formik.setFieldValue("url", blog.url);
-    setImagePreview(`${BASE_URL}/${blog.image}`);
+    setImagePreview(`${blog.image}`);
     toTop();
   };
 
@@ -121,11 +121,11 @@ const Testimonial = () => {
       const res = await post("common/image/testimonial", formData);
 
       // Use image URL from response
-      const imageUrl = res.data?.new_filename; // adjust key based on your API
+      const imageUrl = res.data?.url; // adjust key based on your API
 
       if (fieldName === "image") {
         formik.setFieldValue("image", imageUrl);
-        setImagePreview(BASE_URL + "/" + imageUrl);
+        setImagePreview( imageUrl);
       } else if (fieldName === "details" && index !== null) {
         const updatedDetails = [...formik.values.details];
         updatedDetails[index].image = imageUrl;
@@ -252,9 +252,9 @@ const Testimonial = () => {
         {rows.map((row) => (
           <tr key={row._id} className="hover:bg-gray-50 transition-colors">
             <td className="px-4 py-2">
-              <Link href={`${BASE_URL}/${row.image}`} target="_blank">
+              <Link href={`${row.image}`} target="_blank">
                 <img
-                  src={`${BASE_URL}/${row.image}`}
+                  src={`${row.image}`}
                   alt="insight"
                   className="w-14 h-14 object-cover rounded-md"
                 />
