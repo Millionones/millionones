@@ -56,7 +56,8 @@ const page = () => {
                         <div className="contact-item-detail">
                           <div className="text-16 medium is-info">View map</div>
                           <div className="text-16 is-info lh-180">MILLIONONES - Digital Marketing Agency</div>
-                          <div className="text-16 is-info lh-180">FIRST FLOOR, 177/166F, ALIYARHAJI ROAD, Edathala, Aluva, Kochi, Kerala 683561</div>
+                          {/* <div className="text-16 is-info lh-180">FIRST FLOOR, 177/166F, ALIYARHAJI ROAD, Edathala, Aluva, Kochi, Kerala 683561</div> */}
+                          <div className="text-16 is-info lh-180">Third floor excellence building,<br /> Rajagiri road(Near Rjagiri School Main Gate) Kalamassery,<br /> Cochin-683104</div>
                         </div>
                       </a>
                     </div>
