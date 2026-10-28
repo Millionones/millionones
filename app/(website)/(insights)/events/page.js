@@ -45,7 +45,7 @@ export default async function Events(props) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {data.map((blog, index) => (
-            <BlogCard key={index} image={`${BASE_URL}${blog.image}`} title={blog.name} description={blog.desc} link={`/events/${blog.permalink}`} />
+            <BlogCard key={index} image={`${blog.image}`} title={blog.name} description={blog.desc} link={`/events/${blog.permalink}`} />
           ))}
         </div>
       </div>

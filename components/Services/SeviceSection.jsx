@@ -119,10 +119,10 @@ const SeviceSection = () => {
                                 <div className="work-link w-inline-block">
                                   <div className="work-img-wrap">
                                     <img
-                                      src={`${BASE_URL}${img}`}
+                                      src={`${img}`}
                                       loading="lazy"
                                       sizes="(max-width: 479px) 98vw, (max-width: 767px) 100vw, (max-width: 991px) 48vw, (max-width: 1919px) 23vw, 26vw"
-                                      srcSet={`${BASE_URL}${item?.img}`}
+                                      srcSet={`${item?.img}`}
                                       alt=""
                                       className="work-img"
                                       style={{ transform: 'scale(1.05, 1.05)' }}

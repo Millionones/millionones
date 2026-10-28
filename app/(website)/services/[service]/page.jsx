@@ -11,6 +11,7 @@ const page = async ({ params }) => {
         try {
             const response = await fetch(`${API_URL}service/single/${service}`).then((res) => res.json());
 
+            conosle.log("data", response.data)
             return response.data;
         } catch (error) {
             console.log("Error fetching careers:", error.message);

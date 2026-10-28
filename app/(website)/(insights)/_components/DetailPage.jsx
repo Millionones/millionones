@@ -62,7 +62,7 @@ const DetailPage = async (props) => {
           </div>
 
           <div className="md:w-full mb-8 md:mb-0">
-            <img alt={details.name} src={`${BASE_URL}${details.image}`} className="rounded-lg w-full overflow-hidden max-w-[900px] h-auto" />
+            <img alt={details.name} src={`${details.image}`} className="rounded-lg w-full overflow-hidden max-w-[900px] h-auto" />
           </div>
         </div>
 
@@ -83,7 +83,7 @@ const DetailPage = async (props) => {
             {latest.map((blog, index) => (
               <BlogCard
                 key={index}
-                image={`${BASE_URL}${blog.image}`}
+                image={`${blog.image}`}
                 title={blog.name}
                 description={blog.desc}
                 link={`/${routes[blog.type]}/${blog.permalink}`}

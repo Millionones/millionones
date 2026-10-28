@@ -94,7 +94,7 @@ const RelatedWorks = ({ category }) => {
               >
                 <div className="relative aspect-[16/10] overflow-hidden mb-6 shadow-[0_8px_30px_rgb(0,0,0,0.06)]">
                   <img
-                    src={`${BASE_URL}/${project.img}`}
+                    src={`${project.img}`}
                     alt={project?.title}
                     className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
                   />

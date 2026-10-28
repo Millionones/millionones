@@ -53,7 +53,7 @@ export default function CampaignPage({ data, slug }) {
                 <div className="mb-20">
                   <img
                     alt="Two-Week Campaign"
-                    src={`${BASE_URL}/${item.img}`}
+                    src={`${item.img}`}
                     width={800}
                     height={400}
                     className="rounded-lg w-full max-h-[750px] object-cover"

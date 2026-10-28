@@ -137,8 +137,8 @@ const Works = () => {
                       decoding="async"
                       data-nimg="1"
                       className="w-full h-full object-cover mobile-animation"
-                      srcSet={`${BASE_URL}/${item.img}, ${BASE_URL}/${item.img}`}
-                      src={`${BASE_URL}/${item.img}`}
+                      srcSet={`${item.img}, ${item.img}`}
+                      src={`${item.img}`}
                       style={{ color: 'transparent' }}
                     />
                   </div>
