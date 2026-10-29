@@ -200,7 +200,7 @@ const Footer = ({ show }) => {
           </div>
         </footer>
       </div>
-      {!showButton && <MouseTrail />}
+      <MouseTrail />
     </>
   );
 };
