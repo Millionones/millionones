@@ -46,7 +46,7 @@ const page = () => {
                     </div>
                     <div className="flex">
                       <a
-                        href="https://www.google.com/maps/dir//FIRST+FLOOR,+177%2F166F,+ALIYARHAJI+ROAD,+Edathala,+Aluva,+Kochi,+Kerala+683561/@10.075372,76.2887648,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3b0809858e7b2fa3:0x765506412d11dae!2m2!1d76.3711582!2d10.0753796?entry=ttu&g_ep=EgoyMDI1MDUyOC4wIKXMDSoASAFQAw%3D%3D"
+                        href="https://maps.app.goo.gl/pu42ReU2hwEX4MDu7"
                         target="_blank"
                         className="contact-item-wrap w-inline-block"
                         style={{ alignItems: "flex-start" }}>
