@@ -4,11 +4,11 @@ import model from "../model/index.js";
 import { currentDate, currentTime, generatePermalink, paginationParams } from "../helper/functions.js";
 
 export const create = asyncErrorHandler(async (req) => {
-  const { name, content, type } = req.body;
+  const { name, content, type, image } = req.body;
 
   if (isNull(name && content && type)) throw new Error("Required fields missing", 412);
 
-  if (isNull(req.file)) throw new Error("Image is required", 412);
+  if (isNull(image)) throw new Error("Image is required", 412);
 
   const permalink = generatePermalink(name);
 
@@ -16,13 +16,13 @@ export const create = asyncErrorHandler(async (req) => {
 
   if (exists) throw new Error("Permalink already exists", 400);
 
-  const data = await model.Insight({ ...req.body, permalink, image: req.file.path.replace("public", ""), addedBy: req.user._id }).save();
+  const data = await model.Insight({ ...req.body, permalink, image: image, addedBy: req.user._id }).save();
 
   return new Response(`${type} added successfully`, { data }, 200);
 });
 
 export const update = asyncErrorHandler(async (req) => {
-  const { id, name, content, type } = req.body;
+  const { id, name, content, type, image } = req.body;
 
   if (isNull(name && content && type)) throw new Error("Required fields missing", 412);
 
@@ -37,7 +37,7 @@ export const update = asyncErrorHandler(async (req) => {
   const data = await model.Insight.findByIdAndUpdate(id, {
     $set: {
       ...req.body,
-      image: req?.file?.path ? req.file.path.replace("public", "") : req.body.image,
+      image: image,
       updateBy: req.user._id,
       upDate: currentDate(),
       upTime: currentTime(),

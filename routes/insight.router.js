@@ -17,9 +17,11 @@ router.get("/details/:permalink", controllers.insightDetailList);
 
 router.use(auth);
 
-router.post("/", blogFile.single("image"), controllers.create);
+// router.post("/", blogFile.single("image"), controllers.create);
+router.post("/", controllers.create);
 
-router.put("/", blogFile.single("image"), controllers.update);
+// router.put("/", blogFile.single("image"), controllers.update);
+router.put("/", controllers.update);
 
 router.delete("/:id", controllers.deleteInsight);
 
