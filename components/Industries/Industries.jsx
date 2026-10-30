@@ -97,10 +97,10 @@ const Industries = () => {
   // ];
 
   const achievements = [
-    { number: "500+", label: "Successful Projects" },
-    { number: "200+", label: "Happy Clients" },
-    { number: "50+", label: "Countries Served" },
-    { number: "15+", label: "Years Experience" }
+    { number: "75+", label: "Successful Projects" },
+    { number: "50+", label: "Happy Clients" },
+    { number: "5+", label: "Countries Served" },
+    { number: "7+", label: "Years Experience" }
   ];
 
   const [selectedIndustry, setSelectedIndustry] = useState(null);

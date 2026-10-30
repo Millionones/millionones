@@ -108,8 +108,8 @@ const Footer = ({ show }) => {
                   <li className="hover:text-gray-500">
                     <button onClick={() => {
                       const link = document.createElement('a');
-                      link.href = '/pdf/horatio.pdf';
-                      link.download = 'Horatio-Brochure.pdf'; // desired file name
+                      link.href = '/pdf/millionones-brochure.pdf';
+                      link.download = 'millionones-brochure.pdf'; // desired file name
                       document.body.appendChild(link);
                       link.click();
                       document.body.removeChild(link);
