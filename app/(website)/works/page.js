@@ -11,7 +11,7 @@ export const metadata = setMetaTitleAndDesc(
 );
 
 const page = () => {
-  let bannerContent = " Over 180+ projects various industries since 2021. Helping visionaries fast-forward progress into the future, today.";
+  let bannerContent = " Over 75+ projects various industries since 2019. Helping visionaries fast-forward progress into the future, today.";
   return (
     <>
       <Banner content={bannerContent} />

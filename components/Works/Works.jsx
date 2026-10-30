@@ -128,7 +128,7 @@ const Works = () => {
                   </div>
                 </div>
                 <Link href={`/works/${item._id}`}>
-                  <div className="image-container h-64 relative overflow-hidden mt-8" style={{ opacity: 1, filter: 'blur(0px)' }}>
+                  <div className="image-container h-[360px] relative overflow-hidden mt-8" style={{ opacity: 1, filter: 'blur(0px)' }}>
                     <img
                       alt={item.title}
                       loading="eager"
