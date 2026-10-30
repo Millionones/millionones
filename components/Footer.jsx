@@ -15,7 +15,7 @@ const Footer = ({ show }) => {
   const router = useRouter();
 
   const handleMouseEnter = () => {
-    setShowButton(true);
+    // setShowButton(true);
     // Optional GSAP image zoom effect
     gsap.to(imgRef.current, {
       // scale: 1.05,

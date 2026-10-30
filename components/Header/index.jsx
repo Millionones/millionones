@@ -8,7 +8,6 @@ import useLenis, { destroyLenis, initLenis } from "@/hooks/useLenis";
 import Link from "next/link";
 
 import { motion } from "framer-motion";
-import { useMouseTrail } from "@/components/MouseTrail";
 import { MenuIcon } from "lucide-react";
 import Sidebar from "./Sidebar";
 import VideoPlayer from "../common/VedioPlayer";

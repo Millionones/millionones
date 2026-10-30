@@ -122,7 +122,7 @@ const SeviceSection = () => {
                                       src={`${img}`}
                                       loading="lazy"
                                       sizes="(max-width: 479px) 98vw, (max-width: 767px) 100vw, (max-width: 991px) 48vw, (max-width: 1919px) 23vw, 26vw"
-                                      srcSet={`${item?.img}`}
+                                      srcSet={`${img}`}
                                       alt=""
                                       className="work-img"
                                       style={{ transform: 'scale(1.05, 1.05)' }}
