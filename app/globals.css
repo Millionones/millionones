@@ -23,7 +23,7 @@ body.modal-open {
   /* height: 100vh; */
 }
 
-.custom-cursor-wrapper.is_dot {
+/* .custom-cursor-wrapper.is_dot {
   pointer-events: none;
   mix-blend-mode: difference;
 }
@@ -71,6 +71,51 @@ body.modal-open {
   border-radius: 2rem;
   background: #fff;
   transition: transform 0.1s ease-out;
+} */
+
+
+.custom-cursor-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.custom-cursor-wrapper.is_dot {
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor-wrapper.is_work {
+  opacity: 0;
+}
+
+#cursor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10000;
+  overflow: hidden;
+  mix-blend-mode: difference;
+}
+
+.cursor-follow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background: #fff;
+  transform-origin: center center;
+  pointer-events: none;
+
+  /* Important: JS controls transform */
+  transition: none;
+  will-change: transform;
 }
 
 .swal2-container {
