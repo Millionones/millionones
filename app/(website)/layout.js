@@ -5,6 +5,7 @@ import { Roboto } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/common/ScrollToTop";
+import MouseTrail from "@/components/MouseTrail";
 export const metadata = {
   title: {
     default: "MILLIONONES | Innovative AI & Digital Marketing Company in Kerala",
@@ -75,6 +76,7 @@ export default function HomeLayout({ children }) {
       </noscript>
       <ScrollToTop />
       <Header />
+      <MouseTrail />
       {children}
       {/* <Footer /> */}
     </>
