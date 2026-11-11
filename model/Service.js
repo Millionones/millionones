@@ -8,7 +8,7 @@ const SubContentSchema = new Schema({
 
 const Section2Schema = new Schema({
   title: String,
-  image: String,
+  img: String,
   content: String,
 });
 
