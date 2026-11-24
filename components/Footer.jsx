@@ -132,7 +132,7 @@ const Footer = ({ show }) => {
                 <ul className="mt-3 space-y-2 ">
                   <li className="hover:text-gray-500"><Link href="tel:+919562052148"> General: +91 9562052148</Link></li>
                   <li className="hover:text-gray-500"><Link href="tel:+919562052148"> Sales: +91 9562052148</Link></li>
-                  <li className="hover:text-gray-500"><Link href="mailto:mail@millionones.in?subject=Millionones%20Inquiry"> Email: mail@millionones.in</Link></li>
+                  <li className="hover:text-gray-500"><Link href="mailto:mail@millionones.com?subject=Millionones%20Inquiry"> Email: mail@millionones.com</Link></li>
                   <li className="hover:text-gray-500"><Link href="tel:+919562052148"> Support: +91 9562052148</Link></li>
                   <li className="hover:text-gray-500"><Link href="tel:+919562052148">WhatsApp (Sales): +91 9562052148</Link></li>
                 </ul>
